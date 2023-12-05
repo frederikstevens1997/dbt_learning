@@ -1,11 +1,15 @@
-with customers as (
+with source as (
+    select * from {{ source('jaffle_shop','customers')}}
+), 
+
+customers as (
     
     select 
         id as customer_id,
         first_name,
         last_name
 
-    from default.jaffle_shop_customers
+    from source
 )
 
 select * from customers
